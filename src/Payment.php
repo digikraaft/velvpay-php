@@ -107,4 +107,40 @@ class Payment extends ApiResource
             'reference' => $reference,
         ]);
     }
+
+    /**
+     *
+     * @link https://documenter.getpostman.com/view/36526309/2sA3XY7J6K#b367895b-9365-42aa-b3fb-7e1323c6c0a6
+     *
+     *
+     * @param int|float $amount
+     * @param string $paymentTitle
+     * @param string $description
+     * @param bool $chargeCustomer
+     * @param bool|null $redirectUrl
+     * @param string|null $postPaymentInstructions
+     * @param bool $isNaira
+     * @return array|object
+     * @throws InvalidArgumentException
+     */
+    public static function initiate(
+        int|float $amount,
+        string $paymentTitle,
+        string $description,
+        bool $chargeCustomer = false,
+        bool $redirectUrl = null,
+        string $postPaymentInstructions = null,
+        bool $isNaira = false,
+    ): array|object
+    {
+        return static::staticRequest('POST', "service/payment/initiate", [
+            'amount' => $amount,
+            'title' => $paymentTitle,
+            'description' => $description,
+            'chargeCustomer' => $chargeCustomer,
+            'redirectUrl' => $redirectUrl,
+            'postPaymentInstructions' => $postPaymentInstructions,
+            'isNaira' => $isNaira,
+        ]);
+    }
 }

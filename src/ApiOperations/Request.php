@@ -6,7 +6,6 @@ use Digikraaft\VelvPay\Exceptions\InvalidArgumentException;
 use Digikraaft\VelvPay\Util\Util;
 use Digikraaft\VelvPay\VelvPay;
 use GuzzleHttp\Client;
-use Illuminate\Support\Facades\Log;
 
 /**
  * Trait for resources that need to make API requests.
@@ -17,7 +16,7 @@ trait Request
     protected static $client;
     protected static mixed $response;
 
-    protected static string $idempotencyKey;
+    public static string $idempotencyKey;
 
 
     public static function validateParams(mixed $params = null, bool $required = false): void
